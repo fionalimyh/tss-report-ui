@@ -1,0 +1,145 @@
+<h2>Full Dashboard Design</h2>
+<p class="subtitle">Complete mockup of the TSS Conversion Report — scroll to see all sections</p>
+
+<div class="mockup" style="max-width:860px;margin:0 auto;">
+  <div class="mockup-header">TSS Conversion Report — Full Layout Preview</div>
+  <div class="mockup-body" style="padding:0;background:#f1f5f9;">
+
+    <!-- Top Nav -->
+    <div style="background:#1e293b;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;">
+      <div style="color:#fff;font-weight:700;font-size:15px;">TSS Conversion Report</div>
+      <div style="color:#94a3b8;font-size:12px;">The Swim Starter</div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div style="background:#fff;border-bottom:1px solid #e2e8f0;padding:12px 24px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div style="display:flex;flex-direction:column;gap:3px;">
+        <span style="font-size:10px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.5px;">Country</span>
+        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:6px 28px 6px 10px;font-size:12px;color:#334155;position:relative;min-width:100px;">
+          SG <span style="position:absolute;right:8px;top:7px;color:#94a3b8;">▾</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:3px;">
+        <span style="font-size:10px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.5px;">State</span>
+        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:6px 28px 6px 10px;font-size:12px;color:#334155;position:relative;min-width:100px;">
+          All States <span style="position:absolute;right:8px;top:7px;color:#94a3b8;">▾</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:3px;">
+        <span style="font-size:10px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.5px;">Date Range</span>
+        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:6px 12px;font-size:12px;color:#334155;display:flex;gap:6px;align-items:center;">
+          <span>Jan 2026</span>
+          <span style="color:#94a3b8;">→</span>
+          <span>May 2026</span>
+          <span style="color:#94a3b8;margin-left:6px;">▾</span>
+        </div>
+      </div>
+      <div style="margin-left:auto;">
+        <div style="background:#3b82f6;color:#fff;border-radius:6px;padding:7px 16px;font-size:12px;font-weight:600;cursor:pointer;">Apply</div>
+      </div>
+    </div>
+
+    <!-- Page Body -->
+    <div style="padding:20px 24px;display:flex;flex-direction:column;gap:16px;">
+
+      <!-- Card 1: Inq → Lead -->
+      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;">
+        <div style="padding:16px 20px;border-bottom:1px solid #f1f5f9;display:flex;align-items:flex-start;justify-content:space-between;">
+          <div>
+            <div style="font-size:12px;color:#64748b;font-weight:500;margin-bottom:4px;">Inquiry → Lead Conversion</div>
+            <div style="display:flex;align-items:baseline;gap:10px;">
+              <span style="font-size:32px;font-weight:700;color:#3b82f6;">68%</span>
+              <span style="font-size:14px;color:#94a3b8;">120 qualified / 176 inquiries</span>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+            <span style="background:#dbeafe;color:#2563eb;font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;">↑ 4% vs prev period</span>
+          </div>
+        </div>
+        <div style="padding:16px 20px;">
+          <div style="font-size:11px;color:#94a3b8;margin-bottom:8px;font-weight:500;">Monthly Trend</div>
+          <svg viewBox="0 0 700 80" style="width:100%;height:80px;" preserveAspectRatio="none">
+            <!-- Grid lines -->
+            <line x1="0" y1="20" x2="700" y2="20" stroke="#f1f5f9" stroke-width="1"/>
+            <line x1="0" y1="40" x2="700" y2="40" stroke="#f1f5f9" stroke-width="1"/>
+            <line x1="0" y1="60" x2="700" y2="60" stroke="#f1f5f9" stroke-width="1"/>
+            <!-- Area fill -->
+            <polyline points="40,65 140,55 240,50 340,38 440,28 560,18 680,12 680,80 40,80" fill="#dbeafe" opacity="0.6" stroke="none"/>
+            <!-- Line -->
+            <polyline points="40,65 140,55 240,50 340,38 440,28 560,18 680,12" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linejoin="round"/>
+            <!-- Dots -->
+            <circle cx="40" cy="65" r="4" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+            <circle cx="140" cy="55" r="4" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+            <circle cx="240" cy="50" r="4" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+            <circle cx="340" cy="38" r="4" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+            <circle cx="440" cy="28" r="4" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+            <circle cx="560" cy="18" r="4" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+            <circle cx="680" cy="12" r="4" fill="#3b82f6" stroke="#3b82f6" stroke-width="2"/>
+            <!-- Month labels -->
+            <text x="40" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">Jan</text>
+            <text x="140" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">Feb</text>
+            <text x="240" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">Mar</text>
+            <text x="340" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">Apr</text>
+            <text x="440" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">May</text>
+            <text x="560" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">Jun</text>
+            <text x="680" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">Jul</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Card 2: Lead → TA -->
+      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;">
+        <div style="padding:16px 20px;border-bottom:1px solid #f1f5f9;display:flex;align-items:flex-start;justify-content:space-between;">
+          <div>
+            <div style="font-size:12px;color:#64748b;font-weight:500;margin-bottom:4px;">Lead → Trial Arranged Conversion</div>
+            <div style="display:flex;align-items:baseline;gap:10px;">
+              <span style="font-size:32px;font-weight:700;color:#10b981;">85%</span>
+              <span style="font-size:14px;color:#94a3b8;">102 trial arranged / 120 qualified</span>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+            <span style="background:#d1fae5;color:#059669;font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;">↑ 2% vs prev period</span>
+          </div>
+        </div>
+        <div style="padding:16px 20px;">
+          <div style="font-size:11px;color:#94a3b8;margin-bottom:8px;font-weight:500;">Monthly Trend</div>
+          <svg viewBox="0 0 700 80" style="width:100%;height:80px;" preserveAspectRatio="none">
+            <!-- Grid lines -->
+            <line x1="0" y1="20" x2="700" y2="20" stroke="#f1f5f9" stroke-width="1"/>
+            <line x1="0" y1="40" x2="700" y2="40" stroke="#f1f5f9" stroke-width="1"/>
+            <line x1="0" y1="60" x2="700" y2="60" stroke="#f1f5f9" stroke-width="1"/>
+            <!-- Area fill -->
+            <polyline points="40,55 140,58 240,45 340,38 440,30 560,22 680,15 680,80 40,80" fill="#d1fae5" opacity="0.6" stroke="none"/>
+            <!-- Line -->
+            <polyline points="40,55 140,58 240,45 340,38 440,30 560,22 680,15" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linejoin="round"/>
+            <!-- Dots -->
+            <circle cx="40" cy="55" r="4" fill="#fff" stroke="#10b981" stroke-width="2"/>
+            <circle cx="140" cy="58" r="4" fill="#fff" stroke="#10b981" stroke-width="2"/>
+            <circle cx="240" cy="45" r="4" fill="#fff" stroke="#10b981" stroke-width="2"/>
+            <circle cx="340" cy="38" r="4" fill="#fff" stroke="#10b981" stroke-width="2"/>
+            <circle cx="440" cy="30" r="4" fill="#fff" stroke="#10b981" stroke-width="2"/>
+            <circle cx="560" cy="22" r="4" fill="#fff" stroke="#10b981" stroke-width="2"/>
+            <circle cx="680" cy="15" r="4" fill="#10b981" stroke="#10b981" stroke-width="2"/>
+            <!-- Month labels -->
+            <text x="40" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">Jan</text>
+            <text x="140" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">Feb</text>
+            <text x="240" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">Mar</text>
+            <text x="340" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">Apr</text>
+            <text x="440" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">May</text>
+            <text x="560" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">Jun</text>
+            <text x="680" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">Jul</text>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+    <!-- Footer -->
+    <div style="padding:10px 24px;text-align:center;color:#94a3b8;font-size:11px;background:#f8fafc;border-top:1px solid #e2e8f0;">
+      Data from Supabase · Filtered by: SG / All States / Jan–May 2026
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:20px;text-align:center;">
+  <p style="color:#64748b;font-size:13px;">Does this layout look right? Let me know in the terminal if you'd like to change anything.</p>
+</div>

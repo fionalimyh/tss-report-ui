@@ -1,0 +1,293 @@
+<h2>Dashboard Design — v6</h2>
+<p class="subtitle">Export to CSV button added to the global filter panel.</p>
+
+<style>
+  .info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    color: #64748b;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-left: 6px;
+    vertical-align: middle;
+    position: relative;
+  }
+  .info-icon:hover .tooltip { display: block; }
+  .tooltip {
+    display: none;
+    position: absolute;
+    left: 22px;
+    top: -4px;
+    background: #1e293b;
+    color: #e2e8f0;
+    border-radius: 8px;
+    padding: 10px 14px;
+    width: 270px;
+    font-size: 11px;
+    line-height: 1.6;
+    z-index: 10;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    font-weight: 400;
+  }
+  .tooltip::before {
+    content: '';
+    position: absolute;
+    left: -6px; top: 10px;
+    border-width: 5px 6px 5px 0;
+    border-style: solid;
+    border-color: transparent #1e293b transparent transparent;
+  }
+  .tooltip .tip-title { font-weight: 700; color: #fff; margin-bottom: 5px; font-size: 12px; }
+  .tooltip .tip-formula { background: #334155; border-radius: 4px; padding: 5px 8px; margin: 5px 0; font-family: monospace; font-size: 10px; color: #7dd3fc; }
+  .tooltip .tip-row { display: flex; gap: 6px; margin-top: 4px; align-items: flex-start; }
+  .tooltip .tip-label { font-weight: 600; color: #94a3b8; min-width: 80px; }
+</style>
+
+<div class="mockup" style="max-width:920px;margin:0 auto;">
+  <div class="mockup-header">TSS Conversion Report — v6</div>
+  <div class="mockup-body" style="padding:0;background:#f1f5f9;">
+
+    <!-- Top Nav -->
+    <div style="background:#1e293b;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;">
+      <div style="color:#fff;font-weight:700;font-size:15px;">TSS Conversion Report</div>
+      <div style="color:#94a3b8;font-size:12px;">The Swim Starter</div>
+    </div>
+
+    <!-- Global Filter Panel -->
+    <div style="background:#334155;padding:16px 24px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+        </svg>
+        <span style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.8px;">Global Filters</span>
+        <span style="font-size:10px;color:#64748b;margin-left:4px;">— applies to both cards below</span>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;">
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <span style="font-size:10px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;">Country</span>
+          <div style="background:#1e293b;border:1px solid #475569;border-radius:6px;padding:7px 30px 7px 12px;font-size:12px;color:#e2e8f0;position:relative;min-width:110px;">
+            SG <span style="position:absolute;right:10px;top:8px;color:#64748b;">▾</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <span style="font-size:10px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;">State</span>
+          <div style="background:#1e293b;border:1px solid #475569;border-radius:6px;padding:7px 30px 7px 12px;font-size:12px;color:#e2e8f0;position:relative;min-width:110px;">
+            All States <span style="position:absolute;right:10px;top:8px;color:#64748b;">▾</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <span style="font-size:10px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;">Inquiry Date Range</span>
+          <div style="background:#1e293b;border:1px solid #475569;border-radius:6px;padding:7px 12px;font-size:12px;color:#e2e8f0;display:flex;gap:8px;align-items:center;">
+            <span>Jan 2026</span>
+            <span style="color:#475569;">→</span>
+            <span>May 2026</span>
+            <span style="color:#64748b;margin-left:6px;">▾</span>
+          </div>
+        </div>
+        <!-- Apply + Export buttons -->
+        <div style="display:flex;gap:8px;align-items:center;">
+          <div style="background:#3b82f6;color:#fff;border-radius:6px;padding:8px 18px;font-size:12px;font-weight:600;cursor:pointer;">Apply</div>
+          <div style="background:transparent;color:#94a3b8;border:1px solid #475569;border-radius:6px;padding:7px 14px;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Export CSV
+          </div>
+        </div>
+        <!-- Active filter chips -->
+        <div style="margin-left:auto;display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          <span style="font-size:10px;color:#64748b;padding:3px 8px;background:#1e293b;border-radius:12px;">SG</span>
+          <span style="font-size:10px;color:#64748b;padding:3px 8px;background:#1e293b;border-radius:12px;">All States</span>
+          <span style="font-size:10px;color:#64748b;padding:3px 8px;background:#1e293b;border-radius:12px;">Jan–May 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div style="background:#e2e8f0;padding:8px 24px;display:flex;gap:10px;align-items:center;">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+      <span style="font-size:10px;color:#94a3b8;font-weight:500;">Filtered results shown in both cards · Export downloads the monthly data tables for both cards as a single CSV</span>
+    </div>
+
+    <!-- Cards -->
+    <div style="padding:20px 24px;display:flex;flex-direction:column;gap:16px;">
+
+      <!-- Card 1: Inq → Lead -->
+      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;overflow:visible;">
+        <div style="padding:16px 20px;border-bottom:1px solid #f1f5f9;display:flex;align-items:flex-start;justify-content:space-between;">
+          <div>
+            <div style="font-size:12px;color:#64748b;font-weight:500;margin-bottom:4px;display:flex;align-items:center;">
+              Inquiry → Lead Conversion
+              <span class="info-icon">?
+                <div class="tooltip">
+                  <div class="tip-title">Inquiry → Lead Conversion</div>
+                  <div class="tip-formula">Qualified ÷ Unique Inquiries</div>
+                  <div class="tip-row"><span class="tip-label">Inquiries</span><span>COUNT(DISTINCT inquiry_id) by inquiry_created_date</span></div>
+                  <div class="tip-row"><span class="tip-label">Qualified</span><span>qualification_status = "Qualified"</span></div>
+                  <div class="tip-row"><span class="tip-label">Total row</span><span>Aggregated across full selected date range</span></div>
+                </div>
+              </span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:10px;">
+              <span style="font-size:32px;font-weight:700;color:#3b82f6;">68%</span>
+              <span style="font-size:14px;color:#94a3b8;">120 qualified / 176 inquiries</span>
+            </div>
+          </div>
+          <span style="background:#dbeafe;color:#2563eb;font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;margin-top:4px;">↑ 4% vs prev period</span>
+        </div>
+        <div style="padding:16px 20px;border-bottom:1px solid #f1f5f9;">
+          <div style="font-size:11px;color:#94a3b8;margin-bottom:8px;font-weight:500;">Monthly Trend</div>
+          <svg viewBox="0 0 700 80" style="width:100%;height:80px;" preserveAspectRatio="none">
+            <line x1="0" y1="20" x2="700" y2="20" stroke="#f1f5f9" stroke-width="1"/>
+            <line x1="0" y1="40" x2="700" y2="40" stroke="#f1f5f9" stroke-width="1"/>
+            <line x1="0" y1="60" x2="700" y2="60" stroke="#f1f5f9" stroke-width="1"/>
+            <polyline points="60,65 200,55 340,50 480,38 620,28 620,80 60,80" fill="#dbeafe" opacity="0.6" stroke="none"/>
+            <polyline points="60,65 200,55 340,50 480,38 620,28" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linejoin="round"/>
+            <circle cx="60" cy="65" r="4" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+            <circle cx="200" cy="55" r="4" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+            <circle cx="340" cy="50" r="4" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+            <circle cx="480" cy="38" r="4" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+            <circle cx="620" cy="28" r="4" fill="#3b82f6" stroke="#3b82f6" stroke-width="2"/>
+            <text x="60" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">Jan</text>
+            <text x="200" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">Feb</text>
+            <text x="340" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">Mar</text>
+            <text x="480" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">Apr</text>
+            <text x="620" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">May</text>
+          </svg>
+        </div>
+        <table style="width:100%;border-collapse:collapse;font-size:12px;">
+          <thead>
+            <tr style="background:#f8fafc;border-bottom:1px solid #e2e8f0;">
+              <th style="text-align:left;padding:10px 20px;font-weight:600;color:#64748b;font-size:11px;text-transform:uppercase;">Month</th>
+              <th style="text-align:right;padding:10px 20px;font-weight:600;color:#64748b;font-size:11px;text-transform:uppercase;">Inquiries</th>
+              <th style="text-align:right;padding:10px 20px;font-weight:600;color:#64748b;font-size:11px;text-transform:uppercase;">Qualified</th>
+              <th style="text-align:right;padding:10px 20px;font-weight:600;color:#64748b;font-size:11px;text-transform:uppercase;">Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:9px 20px;color:#334155;">Jan 2026</td><td style="padding:9px 20px;text-align:right;color:#334155;">42</td><td style="padding:9px 20px;text-align:right;color:#334155;">22</td><td style="padding:9px 20px;text-align:right;font-weight:600;color:#3b82f6;">52%</td></tr>
+            <tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:9px 20px;color:#334155;">Feb 2026</td><td style="padding:9px 20px;text-align:right;color:#334155;">38</td><td style="padding:9px 20px;text-align:right;color:#334155;">23</td><td style="padding:9px 20px;text-align:right;font-weight:600;color:#3b82f6;">61%</td></tr>
+            <tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:9px 20px;color:#334155;">Mar 2026</td><td style="padding:9px 20px;text-align:right;color:#334155;">35</td><td style="padding:9px 20px;text-align:right;color:#334155;">23</td><td style="padding:9px 20px;text-align:right;font-weight:600;color:#3b82f6;">66%</td></tr>
+            <tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:9px 20px;color:#334155;">Apr 2026</td><td style="padding:9px 20px;text-align:right;color:#334155;">31</td><td style="padding:9px 20px;text-align:right;color:#334155;">22</td><td style="padding:9px 20px;text-align:right;font-weight:600;color:#3b82f6;">71%</td></tr>
+            <tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:9px 20px;color:#334155;">May 2026</td><td style="padding:9px 20px;text-align:right;color:#334155;">30</td><td style="padding:9px 20px;text-align:right;color:#334155;">20</td><td style="padding:9px 20px;text-align:right;font-weight:600;color:#3b82f6;">67%</td></tr>
+            <tr style="background:#eff6ff;border-top:2px solid #3b82f6;">
+              <td style="padding:11px 20px;color:#1e293b;font-weight:700;">Total (Jan–May)</td>
+              <td style="padding:11px 20px;text-align:right;color:#1e293b;font-weight:700;">176</td>
+              <td style="padding:11px 20px;text-align:right;color:#1e293b;font-weight:700;">120</td>
+              <td style="padding:11px 20px;text-align:right;font-weight:700;color:#3b82f6;">68%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Card 2: Lead → TA -->
+      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;overflow:visible;">
+        <div style="padding:16px 20px;border-bottom:1px solid #f1f5f9;display:flex;align-items:flex-start;justify-content:space-between;">
+          <div>
+            <div style="font-size:12px;color:#64748b;font-weight:500;margin-bottom:4px;display:flex;align-items:center;">
+              Lead → Trial Arranged Conversion
+              <span class="info-icon">?
+                <div class="tooltip">
+                  <div class="tip-title">Lead → Trial Arranged Conversion</div>
+                  <div class="tip-formula">Trial Arranged ÷ Qualified</div>
+                  <div class="tip-row"><span class="tip-label">Qualified</span><span>qualification_status = "Qualified"</span></div>
+                  <div class="tip-row"><span class="tip-label">Trial Arr.</span><span>trial_status = "Trial Arranged"</span></div>
+                  <div class="tip-row"><span class="tip-label">Coach</span><span>Filter by trial_coach (card-level)</span></div>
+                  <div class="tip-row"><span class="tip-label">Trial date</span><span>Additional filter by trial_date (card-level)</span></div>
+                  <div class="tip-row"><span class="tip-label">Total row</span><span>Aggregated across full date range</span></div>
+                </div>
+              </span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:10px;">
+              <span style="font-size:32px;font-weight:700;color:#10b981;">85%</span>
+              <span style="font-size:14px;color:#94a3b8;">102 trial arranged / 120 qualified</span>
+            </div>
+          </div>
+          <span style="background:#d1fae5;color:#059669;font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;margin-top:4px;">↑ 2% vs prev period</span>
+        </div>
+
+        <!-- Card-level filters -->
+        <div style="padding:10px 20px;background:#f0fdf4;border-bottom:1px solid #d1fae5;display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:6px;align-self:flex-end;padding-bottom:1px;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#6ee7b7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+            </svg>
+            <span style="font-size:10px;font-weight:700;color:#059669;text-transform:uppercase;letter-spacing:.5px;">Card Filters</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:3px;">
+            <span style="font-size:10px;font-weight:600;color:#059669;text-transform:uppercase;letter-spacing:.5px;">Coach</span>
+            <div style="background:#fff;border:1px solid #a7f3d0;border-radius:6px;padding:6px 28px 6px 10px;font-size:12px;color:#334155;position:relative;min-width:120px;">
+              All Coaches <span style="position:absolute;right:8px;top:7px;color:#94a3b8;">▾</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:3px;">
+            <span style="font-size:10px;font-weight:600;color:#059669;text-transform:uppercase;letter-spacing:.5px;">Trial Date Range</span>
+            <div style="background:#fff;border:1px solid #a7f3d0;border-radius:6px;padding:6px 12px;font-size:12px;color:#94a3b8;display:flex;gap:6px;align-items:center;">
+              Any date <span style="margin-left:4px;">▾</span>
+            </div>
+          </div>
+          <div>
+            <div style="background:#10b981;color:#fff;border-radius:6px;padding:7px 14px;font-size:12px;font-weight:600;">Apply</div>
+          </div>
+        </div>
+
+        <div style="padding:16px 20px;border-bottom:1px solid #f1f5f9;">
+          <div style="font-size:11px;color:#94a3b8;margin-bottom:8px;font-weight:500;">Monthly Trend</div>
+          <svg viewBox="0 0 700 80" style="width:100%;height:80px;" preserveAspectRatio="none">
+            <line x1="0" y1="20" x2="700" y2="20" stroke="#f1f5f9" stroke-width="1"/>
+            <line x1="0" y1="40" x2="700" y2="40" stroke="#f1f5f9" stroke-width="1"/>
+            <line x1="0" y1="60" x2="700" y2="60" stroke="#f1f5f9" stroke-width="1"/>
+            <polyline points="60,55 200,58 340,45 480,38 620,30 620,80 60,80" fill="#d1fae5" opacity="0.6" stroke="none"/>
+            <polyline points="60,55 200,58 340,45 480,38 620,30" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linejoin="round"/>
+            <circle cx="60" cy="55" r="4" fill="#fff" stroke="#10b981" stroke-width="2"/>
+            <circle cx="200" cy="58" r="4" fill="#fff" stroke="#10b981" stroke-width="2"/>
+            <circle cx="340" cy="45" r="4" fill="#fff" stroke="#10b981" stroke-width="2"/>
+            <circle cx="480" cy="38" r="4" fill="#fff" stroke="#10b981" stroke-width="2"/>
+            <circle cx="620" cy="30" r="4" fill="#10b981" stroke="#10b981" stroke-width="2"/>
+            <text x="60" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">Jan</text>
+            <text x="200" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">Feb</text>
+            <text x="340" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">Mar</text>
+            <text x="480" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">May</text>
+            <text x="620" y="78" text-anchor="middle" font-size="9" fill="#94a3b8">May</text>
+          </svg>
+        </div>
+        <table style="width:100%;border-collapse:collapse;font-size:12px;">
+          <thead>
+            <tr style="background:#f8fafc;border-bottom:1px solid #e2e8f0;">
+              <th style="text-align:left;padding:10px 20px;font-weight:600;color:#64748b;font-size:11px;text-transform:uppercase;">Month</th>
+              <th style="text-align:right;padding:10px 20px;font-weight:600;color:#64748b;font-size:11px;text-transform:uppercase;">Qualified</th>
+              <th style="text-align:right;padding:10px 20px;font-weight:600;color:#64748b;font-size:11px;text-transform:uppercase;">Trial Arranged</th>
+              <th style="text-align:right;padding:10px 20px;font-weight:600;color:#64748b;font-size:11px;text-transform:uppercase;">Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:9px 20px;color:#334155;">Jan 2026</td><td style="padding:9px 20px;text-align:right;color:#334155;">22</td><td style="padding:9px 20px;text-align:right;color:#334155;">16</td><td style="padding:9px 20px;text-align:right;font-weight:600;color:#10b981;">73%</td></tr>
+            <tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:9px 20px;color:#334155;">Feb 2026</td><td style="padding:9px 20px;text-align:right;color:#334155;">23</td><td style="padding:9px 20px;text-align:right;color:#334155;">16</td><td style="padding:9px 20px;text-align:right;font-weight:600;color:#10b981;">70%</td></tr>
+            <tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:9px 20px;color:#334155;">Mar 2026</td><td style="padding:9px 20px;text-align:right;color:#334155;">23</td><td style="padding:9px 20px;text-align:right;color:#334155;">19</td><td style="padding:9px 20px;text-align:right;font-weight:600;color:#10b981;">83%</td></tr>
+            <tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:9px 20px;color:#334155;">Apr 2026</td><td style="padding:9px 20px;text-align:right;color:#334155;">22</td><td style="padding:9px 20px;text-align:right;color:#334155;">19</td><td style="padding:9px 20px;text-align:right;font-weight:600;color:#10b981;">86%</td></tr>
+            <tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:9px 20px;color:#334155;">May 2026</td><td style="padding:9px 20px;text-align:right;color:#334155;">20</td><td style="padding:9px 20px;text-align:right;color:#334155;">19</td><td style="padding:9px 20px;text-align:right;font-weight:600;color:#10b981;">95%</td></tr>
+            <tr style="background:#ecfdf5;border-top:2px solid #10b981;">
+              <td style="padding:11px 20px;color:#1e293b;font-weight:700;">Total (Jan–May)</td>
+              <td style="padding:11px 20px;text-align:right;color:#1e293b;font-weight:700;">120</td>
+              <td style="padding:11px 20px;text-align:right;color:#1e293b;font-weight:700;">102</td>
+              <td style="padding:11px 20px;text-align:right;font-weight:700;color:#10b981;">85%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div style="padding:10px 24px;text-align:center;color:#94a3b8;font-size:11px;background:#f8fafc;border-top:1px solid #e2e8f0;">
+      Data from Supabase · Global: SG / All States / Jan–May 2026 · Card 2 extra: All Coaches / Any trial date
+    </div>
+  </div>
+</div>

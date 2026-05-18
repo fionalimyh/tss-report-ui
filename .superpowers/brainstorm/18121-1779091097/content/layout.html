@@ -1,0 +1,137 @@
+<h2>Dashboard Layout Options</h2>
+<p class="subtitle">Which layout feels right for your conversion report?</p>
+
+<div class="cards">
+
+  <!-- Option A -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:16px;background:#f8f9fa;border-radius:6px;">
+      <div style="background:#1e293b;color:#fff;padding:8px 12px;border-radius:4px;font-size:11px;font-weight:600;margin-bottom:8px;">TSS Conversion Report</div>
+      <!-- Filters -->
+      <div style="display:flex;gap:6px;margin-bottom:8px;">
+        <div style="flex:1;background:#e2e8f0;border-radius:4px;padding:5px 8px;font-size:10px;color:#64748b;">Country ▾</div>
+        <div style="flex:1;background:#e2e8f0;border-radius:4px;padding:5px 8px;font-size:10px;color:#64748b;">State ▾</div>
+        <div style="flex:2;background:#e2e8f0;border-radius:4px;padding:5px 8px;font-size:10px;color:#64748b;">Date Range ▾</div>
+      </div>
+      <!-- Metric cards side by side -->
+      <div style="display:flex;gap:6px;margin-bottom:8px;">
+        <div style="flex:1;background:#fff;border:1px solid #e2e8f0;border-radius:6px;padding:8px;text-align:center;">
+          <div style="font-size:9px;color:#64748b;margin-bottom:2px;">Inq → Lead</div>
+          <div style="font-size:18px;font-weight:700;color:#3b82f6;">68%</div>
+          <div style="font-size:9px;color:#94a3b8;">120 / 176</div>
+        </div>
+        <div style="flex:1;background:#fff;border:1px solid #e2e8f0;border-radius:6px;padding:8px;text-align:center;">
+          <div style="font-size:9px;color:#64748b;margin-bottom:2px;">Lead → TA</div>
+          <div style="font-size:18px;font-weight:700;color:#10b981;">85%</div>
+          <div style="font-size:9px;color:#94a3b8;">102 / 120</div>
+        </div>
+      </div>
+      <!-- Charts side by side -->
+      <div style="display:flex;gap:6px;">
+        <div style="flex:1;background:#fff;border:1px solid #e2e8f0;border-radius:6px;padding:8px;">
+          <div style="font-size:9px;color:#64748b;margin-bottom:4px;">Inq → Lead Trend</div>
+          <svg viewBox="0 0 80 30" style="width:100%;height:30px;">
+            <polyline points="0,25 15,20 30,18 45,10 60,8 80,6" fill="none" stroke="#3b82f6" stroke-width="2"/>
+          </svg>
+        </div>
+        <div style="flex:1;background:#fff;border:1px solid #e2e8f0;border-radius:6px;padding:8px;">
+          <div style="font-size:9px;color:#64748b;margin-bottom:4px;">Lead → TA Trend</div>
+          <svg viewBox="0 0 80 30" style="width:100%;height:30px;">
+            <polyline points="0,20 15,22 30,15 45,12 60,10 80,8" fill="none" stroke="#10b981" stroke-width="2"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Side by Side</h3>
+      <p>Metrics and charts in two columns. Compact, everything visible at once.</p>
+    </div>
+  </div>
+
+  <!-- Option B -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:16px;background:#f8f9fa;border-radius:6px;">
+      <div style="background:#1e293b;color:#fff;padding:8px 12px;border-radius:4px;font-size:11px;font-weight:600;margin-bottom:8px;">TSS Conversion Report</div>
+      <!-- Filters -->
+      <div style="display:flex;gap:6px;margin-bottom:8px;">
+        <div style="flex:1;background:#e2e8f0;border-radius:4px;padding:5px 8px;font-size:10px;color:#64748b;">Country ▾</div>
+        <div style="flex:1;background:#e2e8f0;border-radius:4px;padding:5px 8px;font-size:10px;color:#64748b;">State ▾</div>
+        <div style="flex:2;background:#e2e8f0;border-radius:4px;padding:5px 8px;font-size:10px;color:#64748b;">Date Range ▾</div>
+      </div>
+      <!-- Each metric with its own chart in a tall card -->
+      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:6px;padding:8px;margin-bottom:6px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <div>
+            <div style="font-size:9px;color:#64748b;">Inq → Lead Conversion</div>
+            <div style="font-size:18px;font-weight:700;color:#3b82f6;">68% <span style="font-size:10px;font-weight:400;color:#94a3b8;">120 / 176</span></div>
+          </div>
+          <div style="font-size:9px;padding:3px 6px;background:#dbeafe;color:#3b82f6;border-radius:4px;">↑ 4%</div>
+        </div>
+        <svg viewBox="0 0 160 25" style="width:100%;height:25px;">
+          <polyline points="0,22 25,18 50,15 75,10 100,8 125,6 160,4" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+          <polyline points="0,22 25,18 50,15 75,10 100,8 125,6 160,4 160,25 0,25" fill="#dbeafe" opacity="0.5" stroke="none"/>
+        </svg>
+      </div>
+      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:6px;padding:8px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <div>
+            <div style="font-size:9px;color:#64748b;">Lead → TA Conversion</div>
+            <div style="font-size:18px;font-weight:700;color:#10b981;">85% <span style="font-size:10px;font-weight:400;color:#94a3b8;">102 / 120</span></div>
+          </div>
+          <div style="font-size:9px;padding:3px 6px;background:#d1fae5;color:#10b981;border-radius:4px;">↑ 2%</div>
+        </div>
+        <svg viewBox="0 0 160 25" style="width:100%;height:25px;">
+          <polyline points="0,18 25,20 50,14 75,11 100,9 125,7 160,5" fill="none" stroke="#10b981" stroke-width="1.5"/>
+          <polyline points="0,18 25,20 50,14 75,11 100,9 125,7 160,5 160,25 0,25" fill="#d1fae5" opacity="0.5" stroke="none"/>
+        </svg>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Stacked Cards</h3>
+      <p>Each metric gets its own full-width card with embedded trend. Cleaner, easier to read.</p>
+    </div>
+  </div>
+
+  <!-- Option C -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:16px;background:#f8f9fa;border-radius:6px;">
+      <div style="background:#1e293b;color:#fff;padding:8px 12px;border-radius:4px;font-size:11px;font-weight:600;margin-bottom:8px;">TSS Conversion Report</div>
+      <!-- Filters -->
+      <div style="display:flex;gap:6px;margin-bottom:8px;">
+        <div style="flex:1;background:#e2e8f0;border-radius:4px;padding:5px 8px;font-size:10px;color:#64748b;">Country ▾</div>
+        <div style="flex:1;background:#e2e8f0;border-radius:4px;padding:5px 8px;font-size:10px;color:#64748b;">State ▾</div>
+        <div style="flex:2;background:#e2e8f0;border-radius:4px;padding:5px 8px;font-size:10px;color:#64748b;">Date Range ▾</div>
+      </div>
+      <!-- Summary row -->
+      <div style="display:flex;gap:6px;margin-bottom:8px;">
+        <div style="flex:1;background:#3b82f6;border-radius:6px;padding:8px;text-align:center;">
+          <div style="font-size:9px;color:#bfdbfe;margin-bottom:2px;">Inq → Lead</div>
+          <div style="font-size:18px;font-weight:700;color:#fff;">68%</div>
+          <div style="font-size:9px;color:#bfdbfe;">120 / 176</div>
+        </div>
+        <div style="flex:1;background:#10b981;border-radius:6px;padding:8px;text-align:center;">
+          <div style="font-size:9px;color:#a7f3d0;margin-bottom:2px;">Lead → TA</div>
+          <div style="font-size:18px;font-weight:700;color:#fff;">85%</div>
+          <div style="font-size:9px;color:#a7f3d0;">102 / 120</div>
+        </div>
+      </div>
+      <!-- Single combined chart -->
+      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:6px;padding:8px;">
+        <div style="font-size:9px;color:#64748b;margin-bottom:4px;">Conversion Trends</div>
+        <svg viewBox="0 0 160 35" style="width:100%;height:35px;">
+          <polyline points="0,30 25,25 50,20 75,14 100,11 125,8 160,5" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+          <polyline points="0,25 25,27 50,20 75,16 100,13 125,10 160,7" fill="none" stroke="#10b981" stroke-width="1.5"/>
+        </svg>
+        <div style="display:flex;gap:8px;margin-top:4px;">
+          <div style="display:flex;align-items:center;gap:3px;font-size:9px;color:#64748b;"><span style="width:12px;height:3px;background:#3b82f6;display:inline-block;border-radius:2px;"></span>Inq→Lead</div>
+          <div style="display:flex;align-items:center;gap:3px;font-size:9px;color:#64748b;"><span style="width:12px;height:3px;background:#10b981;display:inline-block;border-radius:2px;"></span>Lead→TA</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Bold + Combined Chart</h3>
+      <p>Coloured metric banners at top, single combined trend chart. Visually striking.</p>
+    </div>
+  </div>
+
+</div>
