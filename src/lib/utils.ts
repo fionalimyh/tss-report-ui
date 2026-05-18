@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export function calcRate(numerator: number, denominator: number): number {
   if (denominator === 0) return 0
-  return Math.floor((numerator / denominator) * 100)
+  return Math.round((numerator / denominator) * 100)
 }
 
 export function formatMonthLabel(isoMonth: string): string {
