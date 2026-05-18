@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import type { PeriodSummary, PeriodChange } from '@/types'
+import type { PeriodSummary, PeriodChange, SelectOption } from '@/types'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -21,6 +21,22 @@ export function toISOMonth(date: Date): string {
   const y = date.getFullYear()
   const m = String(date.getMonth() + 1).padStart(2, '0')
   return `${y}-${m}`
+}
+
+export function buildRecentMonthOptions(anchorDate: Date, length = 24): SelectOption[] {
+  const baseDate = new Date(anchorDate.getFullYear(), anchorDate.getMonth(), 1)
+
+  return Array.from({ length }, (_, index) => {
+    const date = new Date(baseDate)
+    date.setMonth(baseDate.getMonth() - (length - 1 - index))
+
+    const isoMonth = toISOMonth(date)
+
+    return {
+      value: isoMonth,
+      label: formatMonthLabel(isoMonth),
+    }
+  })
 }
 
 export function getPrevPeriodDates(

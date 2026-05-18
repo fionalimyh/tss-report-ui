@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {
   Select,
@@ -10,38 +10,27 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { useStates } from '@/hooks/useFilterOptions'
-import { formatMonthLabel, toISOMonth } from '@/lib/utils'
+import { buildRecentMonthOptions, formatMonthLabel, toISOMonth } from '@/lib/utils'
 import type { GlobalFilters, SelectOption } from '@/types'
-
-function buildMonthOptions(): SelectOption[] {
-  return Array.from({ length: 24 }, (_, index) => {
-    const date = new Date()
-    date.setDate(1)
-    date.setMonth(date.getMonth() - (23 - index))
-    const isoMonth = toISOMonth(date)
-
-    return {
-      value: isoMonth,
-      label: formatMonthLabel(isoMonth),
-    }
-  })
-}
 
 type Props = {
   filters: GlobalFilters
   countryOptions: SelectOption[]
+  monthAnchorIso: string
   onApply: (filters: GlobalFilters) => void
   onExport: () => void
 }
 
-export function GlobalFilterPanel({ filters, countryOptions, onApply, onExport }: Props) {
+export function GlobalFilterPanel({
+  filters,
+  countryOptions,
+  monthAnchorIso,
+  onApply,
+  onExport,
+}: Props) {
   const [draft, setDraft] = useState<GlobalFilters>(filters)
   const stateOptions = useStates(draft.country)
-  const monthOptions = buildMonthOptions()
-
-  useEffect(() => {
-    setDraft(filters)
-  }, [filters])
+  const monthOptions = buildRecentMonthOptions(new Date(monthAnchorIso))
 
   function handleCountryChange(value: string | null) {
     if (!value) return
@@ -49,11 +38,14 @@ export function GlobalFilterPanel({ filters, countryOptions, onApply, onExport }
   }
 
   const activeChips = [
-    draft.country,
-    draft.state === 'all' ? 'All States' : draft.state,
-    `${formatMonthLabel(toISOMonth(draft.startDate))}-${formatMonthLabel(
-      toISOMonth(new Date(draft.endDate.getTime() - 86400000))
-    )}`,
+    { key: 'country', label: draft.country },
+    { key: 'state', label: draft.state === 'all' ? 'All States' : draft.state },
+    {
+      key: 'date-range',
+      label: `${formatMonthLabel(toISOMonth(draft.startDate))}-${formatMonthLabel(
+        toISOMonth(new Date(draft.endDate.getTime() - 86400000))
+      )}`,
+    },
   ]
 
   return (
@@ -203,10 +195,10 @@ export function GlobalFilterPanel({ filters, countryOptions, onApply, onExport }
         <div className="ml-auto flex flex-wrap items-center gap-1.5">
           {activeChips.map((chip) => (
             <span
-              key={chip}
+              key={chip.key}
               className="rounded-full bg-slate-900 px-2 py-1 text-[10px] text-slate-500"
             >
-              {chip}
+              {chip.label}
             </span>
           ))}
         </div>

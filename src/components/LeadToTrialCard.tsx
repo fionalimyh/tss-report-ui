@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {
   Select,
@@ -12,7 +12,7 @@ import {
 import { ConversionChart } from '@/components/ConversionChart'
 import { ConversionTable } from '@/components/ConversionTable'
 import { InfoTooltip } from '@/components/InfoTooltip'
-import { calcPeriodChange, formatMonthLabel, toISOMonth } from '@/lib/utils'
+import { buildRecentMonthOptions, calcPeriodChange, formatMonthLabel, toISOMonth } from '@/lib/utils'
 import type {
   CardFilters,
   GlobalFilters,
@@ -20,20 +20,6 @@ import type {
   PeriodSummary,
   SelectOption,
 } from '@/types'
-
-function buildMonthOptions(): SelectOption[] {
-  return Array.from({ length: 24 }, (_, index) => {
-    const date = new Date()
-    date.setDate(1)
-    date.setMonth(date.getMonth() - (23 - index))
-    const isoMonth = toISOMonth(date)
-
-    return {
-      value: isoMonth,
-      label: formatMonthLabel(isoMonth),
-    }
-  })
-}
 
 function ChangeBadge({
   summary,
@@ -67,6 +53,7 @@ type Props = {
   filters: GlobalFilters
   cardFilters: CardFilters
   coachOptions: SelectOption[]
+  monthAnchorIso: string
   onCardFiltersApply: (filters: CardFilters) => void
   loading: boolean
   error: string | null
@@ -79,18 +66,15 @@ export function LeadToTrialCard({
   filters,
   cardFilters,
   coachOptions,
+  monthAnchorIso,
   onCardFiltersApply,
   loading,
   error,
 }: Props) {
   const [draft, setDraft] = useState<CardFilters>(cardFilters)
-  const monthOptions = buildMonthOptions()
+  const monthOptions = buildRecentMonthOptions(new Date(monthAnchorIso))
   const startLabel = formatMonthLabel(toISOMonth(filters.startDate))
   const endLabel = formatMonthLabel(toISOMonth(new Date(filters.endDate.getTime() - 86400000)))
-
-  useEffect(() => {
-    setDraft(cardFilters)
-  }, [cardFilters])
 
   return (
     <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">

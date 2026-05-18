@@ -21,6 +21,7 @@ it('renders the panel label and both action buttons', () => {
     <GlobalFilterPanel
       filters={filters}
       countryOptions={countryOptions}
+      monthAnchorIso="2026-06-01T00:00:00.000Z"
       onApply={vi.fn()}
       onExport={vi.fn()}
     />
@@ -38,6 +39,7 @@ it('calls onExport when Export CSV is clicked', async () => {
     <GlobalFilterPanel
       filters={filters}
       countryOptions={countryOptions}
+      monthAnchorIso="2026-06-01T00:00:00.000Z"
       onApply={vi.fn()}
       onExport={onExport}
     />
