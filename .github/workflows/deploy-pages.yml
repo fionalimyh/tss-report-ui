@@ -35,6 +35,9 @@ jobs:
         run: npm ci
 
       - name: Build static export
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: https://ratutwrunpjoitzcnseh.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJhdHV0d3J1bnBqb2l0emNuc2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcyODM5NzQsImV4cCI6MjA2Mjg1OTk3NH0.9fcXF78awAlGNcC5yMeTVwG3wBUvfB5Mh_iq9iTYoW8
         run: npx next build --webpack
 
       - name: Upload artifact
