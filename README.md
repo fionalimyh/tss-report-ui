@@ -114,6 +114,10 @@ NEXT_PUBLIC_SUPABASE_URL=...
 NEXT_PUBLIC_SUPABASE_ANON_KEY=...
 ```
 
+For GitHub Pages deployments, set:
+- repository variable `NEXT_PUBLIC_SUPABASE_URL`
+- repository secret `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+
 4. Start the dev server:
 
 ```bash
