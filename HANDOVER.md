@@ -20,7 +20,7 @@ It reads live aggregate data from Supabase RPC functions and supports:
 
 ## Current Status
 
-Tasks 1–11 are complete. Task 12 remains.
+Tasks 1–11 are complete. Task 12 remains. A follow-up pass also fixed the active console issues on the dashboard.
 
 | Task | Status | What |
 |---|---|---|
@@ -35,10 +35,11 @@ Tasks 1–11 are complete. Task 12 remains.
 | 9 | ✅ | `InqToLeadCard` |
 | 10 | ✅ | `LeadToTrialCard` |
 | 11 | ✅ | `src/app/layout.tsx` and `src/app/page.tsx` wired |
+| 11a | ✅ | Hydration mismatch and duplicate React key fixes applied |
 | 12 | 🔲 | End-to-end manual verification |
 
-**Validation status:** `npm test` and `npx tsc --noEmit` both pass on Node `v20.20.2`.  
-**Current automated baseline:** 19 tests passing.
+**Validation status:** `eslint` passes and `npx tsc --noEmit` passes in the current workspace.  
+**Environment constraint:** this session is on Node `v18.19.1`, so `vitest` startup fails and `next build` is blocked because Next.js `16.2.6` requires Node `>=20.9.0`.
 
 ---
 
@@ -46,6 +47,7 @@ Tasks 1–11 are complete. Task 12 remains.
 
 Added:
 
+- `src/components/DashboardClient.tsx`
 - `src/components/InfoTooltip.tsx`
 - `src/components/ConversionChart.tsx`
 - `src/components/ConversionTable.tsx`
@@ -57,16 +59,31 @@ Added:
 
 Updated:
 
+- `HANDOVER.md`
 - `src/app/layout.tsx`
 - `src/app/page.tsx`
+- `src/components/ui/button.tsx`
+- `src/components/ui/select.tsx`
+- `src/components/ui/tooltip.tsx`
+- `src/components/LeadToTrialCard.tsx`
+- `src/lib/utils.ts`
 - `README.md`
+
+Latest follow-up changes:
+
+- moved the interactive dashboard shell into `src/components/DashboardClient.tsx`
+- made the initial month/date snapshot server-stable by passing `initialNowIso` from `src/app/page.tsx`
+- replaced duplicated month-option builders with shared `buildRecentMonthOptions()` in `src/lib/utils.ts`
+- fixed duplicate React keys in `GlobalFilterPanel` active chips by using semantic keys instead of label text
+- added `suppressHydrationWarning` on the root `<html>` element and shared Base UI button/select/tooltip triggers to avoid false-positive hydration warnings from browser extensions injecting attributes like `fdprocessedid` and `data-scribe-recorder-ready`
+- updated `GlobalFilterPanel` tests for the new `monthAnchorIso` prop
 
 ---
 
 ## Critical Notes
 
 ### 1. Node version
-Use Node `v20.20.2` for every `npm` / `npx` command:
+Use Node `v20.20.2` for every `npm` / `npx` command if you need `vitest`, `next build`, or `next dev` verification:
 
 ```bash
 export NVM_DIR="$HOME/.nvm" && source "$NVM_DIR/nvm.sh" && nvm use v20.20.2
@@ -82,14 +99,26 @@ Do **not** replace `src/app/globals.css` with Tailwind v3 directives. The curren
 `src/app/layout.tsx` keeps the current `next/font` setup with CSS variables mapped into the Tailwind theme. If you change fonts, keep `--font-sans` and `--font-geist-mono` aligned with `globals.css`.
 
 ### 5. Global filter behavior
-`GlobalFilterPanel` owns an internal draft state and calls `useStates(draft.country)` directly. Changing country resets `state` to `'all'`.
+`GlobalFilterPanel` still owns an internal draft state and calls `useStates(draft.country)` directly. Changing country resets `state` to `'all'`.
+
+The panel now also requires a `monthAnchorIso` prop so the month dropdown options are deterministic across server and client render.
 
 ### 6. Default dashboard filters
-`src/app/page.tsx` defaults to:
+The default dashboard filters still are:
 
 - country = `SG`
 - state = `all`
 - date range = last 6 months, with `endDate` as the first day of the current month (exclusive upper bound)
+
+The important implementation detail now is that the "current month" anchor is created on the server in `src/app/page.tsx` and passed into `DashboardClient`, `GlobalFilterPanel`, and `LeadToTrialCard` as an ISO timestamp to avoid SSR/client drift.
+
+### 7. Hydration warning context
+The original console warning had two causes:
+
+- a real mismatch from `new Date()` being used during client-component render for month options
+- browser-extension attribute injection on shared interactive elements
+
+The first is fixed by the server-stable time anchor. The second is intentionally tolerated via `suppressHydrationWarning` on the root HTML element and shared Base UI trigger wrappers.
 
 ---
 
@@ -128,6 +157,7 @@ src/
 │   ├── layout.tsx
 │   └── page.tsx
 ├── components/
+│   ├── DashboardClient.tsx
 │   ├── ConversionChart.tsx
 │   ├── ConversionTable.tsx
 │   ├── GlobalFilterPanel.tsx
@@ -165,10 +195,12 @@ export NVM_DIR="$HOME/.nvm" && source "$NVM_DIR/nvm.sh" && nvm use v20.20.2 && n
 Then manually verify:
 
 1. `npm run dev` starts cleanly.
-2. Dashboard loads without runtime errors.
-3. Default filters are `SG` and the last 6 months.
-4. Country changes refetch state options through `useStates(draft.country)`.
-5. Inquiry → Lead renders summary, trend chart, and table.
-6. Lead → Trial renders summary, card filters, trend chart, and table.
-7. CSV export downloads a file with the expected filename pattern.
-8. Empty `trials` / `coaches` data does not break the page.
+2. Dashboard loads without runtime errors or React key warnings.
+3. The hydration mismatch warning is gone in a clean browser profile.
+4. If the warning only appears with a browser extension enabled, confirm it is limited to extension-injected attributes and not app state drift.
+5. Default filters are `SG` and the last 6 months.
+6. Country changes refetch state options through `useStates(draft.country)`.
+7. Inquiry → Lead renders summary, trend chart, and table.
+8. Lead → Trial renders summary, card filters, trend chart, and table.
+9. CSV export downloads a file with the expected filename pattern.
+10. Empty `trials` / `coaches` data does not break the page.
